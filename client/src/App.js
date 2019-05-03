@@ -9,15 +9,12 @@ class App extends Component {
 
     render() {
         return (
-            {/*<Provider store={ store }>*/}
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo"/>
                 <h1 className="App-title">React/Redux Express Starter</h1>
             </header>
-            {/*<Customers/>*/}
         </div>
-        // </Provider>
     )
     }
 }
