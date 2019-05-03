@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Express node js application framework to act as a server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "server": "nodemon server.js"
+  },
+  "keywords": [
+    "Express",
+    "nodemon",
+    "apis"
+  ],
+  "author": "Rikesh Lal Shrestha",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.19.0"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "react-redux-boilerplate",
+  "version": "1.0.0",
+  "description": "react redux boilerplate application with express to serve api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client-install": "cd client && npm install",
+    "server": "npm start --prefix server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RikLakhe/react-redux-boilerplate.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Rikesh Lal Shrestha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RikLakhe/react-redux-boilerplate/issues"
+  },
+  "homepage": "https://github.com/RikLakhe/react-redux-boilerplate#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "dependencies": {}
+}
