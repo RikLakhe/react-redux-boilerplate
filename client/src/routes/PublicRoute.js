@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Route} from 'react-router-dom';
 
-const PublicRoute = ({component: Component, layout: Layout, ...rest}) => (
+const PublicRoute = ({component: Component, layout: Layout,...rest}) => (
     <Route {...rest} render={props => (
-        <Layout>
-            <Component {...props}/>
-        </Layout>
+        <Fragment>
+            <Layout>
+            <Component {...props} />
+            </Layout>
+        </Fragment>
     )}/>
 );
 
