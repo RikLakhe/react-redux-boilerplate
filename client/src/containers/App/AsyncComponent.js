@@ -10,3 +10,8 @@ export const AsyncLogin = loadable({
     loader: () => import('./../Auth'),
     loading: LoadingComponent,
 });
+
+export const AsyncNotFound = loadable({
+    loader: () => import('./../Exception/NotFoundContainer'),
+    loading: LoadingComponent,
+});

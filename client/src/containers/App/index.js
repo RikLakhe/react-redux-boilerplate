@@ -7,14 +7,19 @@ import MainLayout from '../../components/Layout/Layout/Main'
 import StaticLayout from '../../components/Layout/Layout/Static'
 
 import {
-    AsyncHome,AsyncLogin
+    AsyncHome,AsyncLogin,AsyncNotFound
 } from './AsyncComponent';
 
 const App = () => (
     <Fragment>
         <Switch>
-            <PrivateRoute exact path='/home' layout={MainLayout} component={AsyncHome}/>
-            <PublicRoute path='/' layout={StaticLayout} component={AsyncLogin} />
+
+            <PublicRoute exact path='/' layout={StaticLayout} component={AsyncLogin} />
+
+            <PrivateRoute  path='/home' layout={MainLayout} component={AsyncHome}/>
+
+            <Route component={AsyncNotFound} />
+
         </Switch>
     </Fragment>
 )

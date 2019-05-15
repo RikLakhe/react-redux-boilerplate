@@ -18,7 +18,6 @@ console.log(props)
     const logout = () => {
         console.log('logged out')
         setAuthenticated(false)
-        return true;
     }
 
     return (
