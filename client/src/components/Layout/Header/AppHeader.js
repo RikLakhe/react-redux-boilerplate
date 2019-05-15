@@ -1,6 +1,6 @@
 import React from 'react'
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
-import Logo from './../../common/Logo'
+import Logo from '../../Common/Logo'
 
 const AppHeader = () => {
     return (

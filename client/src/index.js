@@ -7,6 +7,7 @@ import {Router} from 'react-router-dom';
 import './index.css';
 import './styles/theme/bootstrap.min.css';
 
+import { AuthProvider } from './components/Context/AuthContext';
 import App from './containers/App';
 import configureStore, {history} from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
@@ -22,9 +23,9 @@ render(
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <Router history={history}>
-                    {/*<AuthProvider>*/}
+                    <AuthProvider>
                     <App/>
-                    {/*</AuthProvider>*/}
+                    </AuthProvider>
                 </Router>
             </ConnectedRouter>
         </Provider>
