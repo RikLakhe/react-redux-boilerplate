@@ -31,7 +31,7 @@ const useLoginForm = props => {
                 <div className="row justify-content-md-center ">
                     <button className={"btn btn-primary mt-5"} onClick={() => {
                         login();
-                        props.history.push('/home');
+                        // props.history.push('/home');
                     }}>Click to login
                     </button>
                 </div>

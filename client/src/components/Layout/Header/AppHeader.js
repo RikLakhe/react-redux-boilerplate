@@ -19,8 +19,4 @@ const AppHeader = () => {
         </Navbar>)
 }
 
-const alertLogin = () => {
-    alert('login');
-}
-
 export default AppHeader;

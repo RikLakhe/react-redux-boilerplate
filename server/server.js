@@ -1,6 +1,13 @@
-const express = require('express');
+var express = require('express');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var cors = require('cors');
 
-const app = express();
+let app = express();
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
 
 app.get('/api/customers', (req, res) => {
     const customers = [
@@ -12,16 +19,17 @@ app.get('/api/customers', (req, res) => {
     res.json(customers);
 });
 
-app.get('/', (req, res) => {
+app.options('/v1/login',cors())
+app.post('/v1/login',cors(), (req, res) => {
+    console.log(req.body)
     const customers = [
         {id: 1, firstName: 'John', lastName: 'Doe'},
         {id: 2, firstName: 'Brad', lastName: 'Traversy'},
         {id: 3, firstName: 'Mary', lastName: 'Swanson'},
     ];
-
-    res.json(customers);
+    res.send('OK');
 });
 
-const port = 5000;
+const port = 3001;
 
 app.listen(port, () => `Server running on port ${port}`);
