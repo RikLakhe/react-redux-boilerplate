@@ -16,7 +16,7 @@ console.log(props)
         console.log('loged in')
         const username = "apple";
         const password = "apples";
-        return axios.post(`${API_URL}v1/login`, { "username":username, "password":password }).then(response => {
+        return axios.post(`${API_URL}/auth/v1/login`, { "username":username, "password":password }).then(response => {
             console.log('login',response)
             // setLocalStorage('token', response.data.data.token);
             // setLocalStorage('fullName', response.data.data.fullName);
