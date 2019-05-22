@@ -2,6 +2,7 @@ import React, {createContext, useState} from 'react';
 import axios from 'axios';
 
 import {API_URL} from './../../constants/appConfig';
+import {setLocalStorage} from "../../utils/storageUtil";
 
 const AuthContext = createContext({
     isAuthenticated: false,
@@ -15,7 +16,7 @@ const AuthProvider = props => {
         return axios
             .post(`${API_URL}auth/v1/login`,formData,{credentials: 'same-origin'})
             .then(response => {
-                // setLocalStorage('token', response.data.data.token);
+                setLocalStorage('token', response.data.data.token);
                 // setLocalStorage('fullName', response.data.data.fullName);
                 // setLocalStorage('user', response.data.data);
                 setAuthenticated(true);
@@ -27,6 +28,7 @@ const AuthProvider = props => {
 
     const logout = () => {
         console.log('logged out');
+        setLocalStorage('token', null);
         setAuthenticated(false);
     };
 
