@@ -11,7 +11,6 @@ const key = commonUtil.randomSecretKey();
 
 router.route('/login').post((req, res, next) => {
   // authCtrl.login(req, res);
-  // check if client sent cookie
 
   if (!req.body.username || !req.body.password) {
     res.status(200).send({
@@ -37,7 +36,8 @@ router.route('/login').post((req, res, next) => {
       res
         .status(200)
         .cookie('X-CROS', token, {
-          // secure: true,
+          domain:'localhost',
+          secure: false,
           maxAge: 900000,
           httpOnly: true,
         })

@@ -1,11 +1,11 @@
-import React,{useContext} from 'react'
+import React, {useContext} from 'react'
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
 
 import Logo from '../../Common/Logo'
 import {AuthContext} from "../../Context/AuthContext";
 
-const AppHeader = () => {
-    const {logout} = useContext(AuthContext)
+const AppHeader = (props) => {
+    const {logout, authenticated} = useContext(AuthContext)
 
     return (
         <Navbar bg="dark" variant="dark">
@@ -14,7 +14,9 @@ const AppHeader = () => {
                 <Navbar.Brand href="#home">React-Redux-boilerplate</Navbar.Brand>
             </Nav>
             <Nav inline>
-                <Button variant="outline-info" onClick={() => logout()}>Log In</Button>
+                {props.children.props.location.pathname === "/" ? null : (authenticated ?
+                    <Button variant="outline-info" onClick={() => logout()}>Log out</Button> :
+                    <Button variant="outline-info" onClick={() => props.history.push('/')}>Log in</Button>)}
             </Nav>
         </Navbar>)
 }

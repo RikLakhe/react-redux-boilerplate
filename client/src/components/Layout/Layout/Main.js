@@ -8,8 +8,8 @@ const MainLayout = (props) => {
     return (
         <section className="body-wrapper">
             <section className="body-main">
-                <AppHeader/>
-                <AppSideNav/>
+                <AppHeader {...props}/>
+                <AppSideNav />
                 {props.children}
                 <AppFooter/>
             </section>

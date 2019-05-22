@@ -6,7 +6,7 @@ var logger = require('morgan');
 // CORS providing a Connect/Express middleware that can be used to enable CORS with various options.
 var cors = require('cors');
 
-// omponents
+// Components
 var privateRoutes = require('./routes/index.privateRoute');
 
 let app = express();
@@ -17,6 +17,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(cookieParser());
+
+// indicate whether or not the response to the request can be exposed to the page
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    next();
+});
 
 // Router
 app.use('/auth', privateRoutes);

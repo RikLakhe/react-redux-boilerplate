@@ -7,7 +7,7 @@ const StaticLayout = (props) => {
     return (
         <section className="body-wrapper">
             <section className="body-main">
-                <AppHeader/>
+                <AppHeader {...props}/>
                 {props.children}
                 <AppFooter/>
             </section>
