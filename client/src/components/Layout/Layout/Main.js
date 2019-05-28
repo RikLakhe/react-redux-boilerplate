@@ -14,7 +14,7 @@ const MainLayout = (props) => {
             <div className="container-fluid">
                 <section className="row h-100">
                     <AppSideNav/>
-                    <main className={"col-8"}>{props.children}</main>
+                    <main className={"col-11 p-3"}>{props.children}</main>
                 </section>
             </div>
 

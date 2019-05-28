@@ -34,7 +34,7 @@ router.route('/login').post((req, res, next) => {
             let token = jwtUtil.createNewToken(user, key);
 
             res
-                .status(200)
+                .status(200)``
                 .cookie('X-CROS', token, {
                     domain: 'localhost',
                     secure: false,

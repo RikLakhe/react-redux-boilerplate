@@ -6,6 +6,24 @@ export const AsyncHome = loadable({
     loading: LoadingComponent,
 });
 
+export const AsyncProducts = loadable({
+    loader: () => import('./../Products'),
+    loading: LoadingComponent,
+});
+
+
+export const AsyncSetting = loadable({
+    loader: () => import('./../Setting'),
+    loading: LoadingComponent,
+});
+
+
+export const AsyncUsers = loadable({
+    loader: () => import('./../Users'),
+    loading: LoadingComponent,
+});
+
+
 export const AsyncLogin = loadable({
     loader: () => import('./../Auth'),
     loading: LoadingComponent,

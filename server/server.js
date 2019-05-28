@@ -8,6 +8,7 @@ var cors = require('cors');
 
 // Components
 var privateRoutes = require('./routes/index.privateRoute');
+var privateRoutes = require('./routes/index.publicRoute');
 
 let app = express();
 app.use(logger('dev'));
@@ -29,6 +30,7 @@ app.use(cookieParser());
 
 // Router
 app.use('/auth', privateRoutes);
+app.use('/public', privateRoutes);
 
 const port = 3001;
 

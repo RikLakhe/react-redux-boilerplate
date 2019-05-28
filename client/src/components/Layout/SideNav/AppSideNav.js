@@ -1,17 +1,20 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
+import MenuList from '../../../constants/menuRoute'
 
-const AppSideNav = () =>{
-    return(
-        <aside id="sidenav" className={"col-md-2 bg-light border-right px-2"}>
+const AppSideNav = () => {
+    return (
+        <aside id="sidenav" className={"col-md-1 bg-light border-right p-2"}>
             <ul className="nav flex-column nav-pills nav-main">
-                <li className="nav-item">1 Item</li>
-                <li className="nav-item">2 Item</li>
-                <li className="nav-item">3 Item</li>
-                <li className="nav-item">4 Item</li>
-                <li className="nav-item">5 Item</li>
+                {MenuList &&
+                MenuList.map((item, index) => (
+                    <li className="nav-item">
+                        <Link to={item.path}><i className={"icon ion-md-open mx-2"} />{item.name}</Link>
+                    </li>
+                ))}
             </ul>
         </aside>
     )
 }
 
-export default  AppSideNav;
+export default AppSideNav;
