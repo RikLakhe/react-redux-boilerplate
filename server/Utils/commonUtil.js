@@ -1,12 +1,12 @@
 const uuid = require('uuid')
 
-exports.cookieParse = () => {}
+export const cookieParse = () => {}
 
-exports.randomSecretKey = () => {
-    return (secretKey = uuid())
+export const randomSecretKey = () => {
+    return uuid()
 }
 
-exports.findUser = (users, id, userName) => {
+export const findUser = (users, id, userName) => {
     const user = users.find(u => {
         return u.userName === userName && u.id === id
     })

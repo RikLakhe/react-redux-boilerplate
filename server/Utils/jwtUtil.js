@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-exports.createNewToken = (user, key) => {
+export const createNewToken = (user, key) => {
   console.log('thekey:', key);
   const token = jwt.sign(
     {
@@ -16,7 +16,7 @@ exports.createNewToken = (user, key) => {
   return token;
 };
 
-exports.isTokenExpired = (Token, key) => {
+export const isTokenExpired = (Token, key) => {
   try {
     const decoded = decodeToken(Token, key);
     if (decoded.exp < Date.now() / 1000) {
@@ -28,6 +28,6 @@ exports.isTokenExpired = (Token, key) => {
   }
 };
 
-exports.decodeToken = (Token, key) => {
+export const decodeToken = (Token, key) => {
   return jwt.decode(Token, key);
 };
