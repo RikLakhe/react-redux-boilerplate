@@ -4,7 +4,7 @@ import axios from 'axios';
 import { API_URL } from '../constants/appConfig';
 // import { http404Error, http500Error } from '../actions/httpErrorAction';
 // import configureStore from '../store/configureStore';
-// import { clearLocalStorage, getLocalStorage, setLocalStorage } from './storageUtil';
+import { clearLocalStorage, getLocalStorage, setLocalStorage } from './storageUtil';
 
 // const store = configureStore();
 
@@ -12,20 +12,20 @@ export const httpBase = () => {
   const api = axios.create({
     baseURL: `${API_URL}`,
     headers: {
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
-      // 'X-XSRF-TOKEN': getLocalStorage('token'),
+      'X-XSRF-TOKEN': getLocalStorage('token'),
     },
     responseType: 'json',
   });
 
-  api.interceptors.response.use(
-    response => {
+  // api.interceptors.response.use(
+  //   response => {
     //   if (response.headers && response.headers['x-xsrf-token']) {
     //     setLocalStorage('token', response.headers['x-xsrf-token']);
     //   }
-      return response;
-    },
+    //   return response;
+    // },
     // error => {
     //   if (401 === error.response.status) {
     //     clearLocalStorage('token');
@@ -44,7 +44,7 @@ export const httpBase = () => {
     //   }
     //   return Promise.reject(error);
     // }
-  );
+  // );
 
   return api;
 };

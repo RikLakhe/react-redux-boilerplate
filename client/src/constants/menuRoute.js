@@ -10,7 +10,7 @@ export default [
         path: '/users',
         iconName: 'icon ion-md-speedometer',
     }, {
-        name: 'Products',
+        name: 'ProductsList',
         key: 'products',
         path: '/products',
         iconName: 'icon ion-md-speedometer',

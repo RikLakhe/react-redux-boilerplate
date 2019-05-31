@@ -5,11 +5,12 @@ import {connectRouter} from 'connected-react-router';
 // import passwordPoliciesReducer from './passwordPoliciesReducer';
 // import countriesReducer from './countriesReducer';
 // import customersReducer from './customersReducer';
-// import partnerCountriesReducer from './partnerCountriesReducer';
+import productsReducer from './productsReducer';
 
 const appReducer = history =>
     combineReducers({
         router: connectRouter(history),
+        products: productsReducer,
     });
 
 const rootReducer = (state, action) => {
