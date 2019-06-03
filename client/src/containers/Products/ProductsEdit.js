@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ListProducts from '../../components/Product/ListProducts';
 import * as productService from '../../services/productService';
 
-export class ListContainer extends Component {
+export class EditContainer extends Component {
     /**
      * Fetch global item records with search criteria.
      *
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ListContainer);
+)(EditContainer);

@@ -10,9 +10,25 @@ export const fetchProducts = (formData = {}) => {
     return dispatch => {
         dispatch(productFetchRequest());
 
-        return fetch('currency/v1/currency/find-all', formData)
+        return fetch('public/v1/product')
             .then(response => {
-                if (response.data.message === 'SUCCESS') {
+                if (response.data.status === 'SUCCESS') {
+                    dispatch(productFetchRequestSuccess(response.data.data));
+                } else {
+                    // TODO
+                }
+            })
+            .catch(error => dispatch(productFetchRequestFailure(error.response.data)));
+    };
+};
+
+export const editProduct = (formData = {}) => {
+    return dispatch => {
+        dispatch(productFetchRequest());
+
+        return fetch('public/v1/product')
+            .then(response => {
+                if (response.data.status === 'SUCCESS') {
                     dispatch(productFetchRequestSuccess(response.data.data));
                 } else {
                     // TODO

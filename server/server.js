@@ -22,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(cookieParser());
+app.disable('etag');
 
 // Router
 app.use('/auth', privateRoutes);
@@ -29,4 +30,5 @@ app.use('/public', publicRoute);
 
 const hostname = '127.127.127.127';
 const port = 3001;
+
 server.listen(port, hostname, () => { console.log(`Server running at http://${hostname}:${port}/`); });

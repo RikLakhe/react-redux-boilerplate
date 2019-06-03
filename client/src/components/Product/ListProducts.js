@@ -1,10 +1,15 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-// import ReactTable from 'react-table';
+import React, {Fragment, useContext, useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import ReactTable from 'react-table';
 // import { Form, Formik, withFormik } from 'formik';
-// import 'react-table/react-table.css';
+import 'react-table/react-table.css';
 
 const ListProducts = props => {
+    const {
+        products,
+        productsErrors,
+        productsLoading
+    } = props;
     // const { childOpenKey, selectedChild } = useContext(MenuContext);
     // const { page, setPage } = useState(0);
     // let childMenuCode = explodeChildrenPath(childOpenKey);
@@ -20,48 +25,70 @@ const ListProducts = props => {
     // } = props;
     // const { t } = useTranslation();
     //
-    // const columns = [
-    //     {
-    //         Header: () => t(`${childMenuCode}.code.label`),
-    //         headerClassName: 'bold react-table-sortable-column',
-    //         id: 'code',
-    //         accessor: d => <div className="text-center">{d.code}</div>, // String-based value accessors!
-    //         maxWidth: 200,
-    //     },
-    //     {
-    //         Header: () => t(`${childMenuCode}.description.label`),
-    //         headerClassName: 'bold react-table-sortable-column',
-    //         accessor: 'description',
-    //     },
-    //     {
-    //         Header: () => t(`${childMenuCode}.active.label`),
-    //         headerClassName: 'bold',
-    //         id: 'active',
-    //         maxWidth: 100,
-    //         sortable: false,
-    //         show: selectedChild.isEditable,
-    //         accessor: d => (
-    //             <div className="text-center">
-    //                 <input type="checkbox" checked={d.isActive} className={'text-center'} disabled />
-    //             </div>
-    //         ),
-    //     },
-    //     {
-    //         Header: () => t(`${childMenuCode}.list.action.label`),
-    //         headerClassName: 'text-center bold',
-    //         id: 'actions',
-    //         maxWidth: 100,
-    //         sortable: false,
-    //         show: selectedChild.isEditable,
-    //         accessor: d => (
-    //             <div className="text-center">
-    //                 <Link to={`/globals/${childMenuCode}/${d.id}/edit`} className={'font-weight-light'}>
-    //                     Edit
-    //                 </Link>
-    //             </div>
-    //         ),
-    //     },
-    // ];
+    const columns = [
+        {
+            Header: () => 'Product ID',
+            headerClassName: 'bold react-table-sortable-column',
+            id: 'product_id',
+            sortable: false,
+            accessor: d => <div className="text-center">{d.product_id}</div>,
+        }, {
+            Header: () => 'Product Name',
+            id: 'product_name',
+            headerClassName: 'bold react-table-sortable-column',
+            sortable: false,
+            width:120,
+            accessor: d => <div className="text-center">{d.product_name}</div>,
+        }, {
+            Header: () => 'Price',
+            id: 'price',
+            headerClassName: 'bold react-table-sortable-column',
+            sortable: false,
+            width:120,
+            accessor: d => <div className="text-center">{d.price}</div>,
+        }, {
+            Header: () => 'Product Age',
+            id: 'age',
+            headerClassName: 'bold react-table-sortable-column',
+            sortable: false,
+            width:100,
+            accessor: d => <div className="text-center">{d.age}</div>,
+        }, {
+            Header: () => 'Product Company',
+            id: 'company',
+            headerClassName: 'bold react-table-sortable-column',
+            sortable: false,
+            accessor: d => <div className="text-center">{d.company}</div>,
+        }, {
+            Header: () => 'Product Email',
+            id: 'email',
+            headerClassName: 'bold react-table-sortable-column',
+            sortable: false,
+            accessor: d => <div className="text-center">{d.email}</div>,
+
+        }, {
+            Header: () =>'Action',
+            headerClassName: 'bold react-table-sortable-column',
+            id: 'action',
+            width:120,
+            accessor: d => (
+                <div className="text-center">
+                    <Link to={`/products/${d.product_id}/edit`} className="btn btn-sm btn-link p-0">
+                        Edit
+                    </Link>
+                    /
+                    <Link to={`/products/${d.product_id}`} className="btn btn-sm btn-link p-0">
+                        View
+                    </Link>
+                    /
+                    <Link to={`/products/`} className="btn btn-sm btn-link p-0">
+                        Delete
+                    </Link>
+                </div>
+            ),
+            sortable: false,
+        },
+    ];
     //
     // const handleTableChange = (state, instance) => {
     //     props.fetchGlobalWithCriteria(selectedChild.masterType, {
@@ -86,9 +113,12 @@ const ListProducts = props => {
     //     };
     // }, [childMenuCode, selectedChild]);
 
+    useEffect(() => {
+        props.fetchProducts();
+    }, [])
+
     return (
         <Fragment>
-            gg list
             {/*<div className="py-4">*/}
             {/*    <Message error={globalItemsErrors} />*/}
             {/*    <div className="row mb-3 align-items-center">*/}
@@ -120,20 +150,20 @@ const ListProducts = props => {
             {/*            </div>*/}
             {/*        ) : null}*/}
             {/*    </div>*/}
-            {/*    <ReactTable*/}
-            {/*        manual*/}
-            {/*        sortable*/}
-            {/*        minRows={2}*/}
-            {/*        defaultPageSize={10}*/}
-            {/*        noDataText={'No data found.'}*/}
-            {/*        columns={columns}*/}
-            {/*        data={globalItems instanceof Array ? globalItems : []}*/}
-            {/*        pages={Math.ceil(globalItemsPagination.total / globalItemsPagination.pageSize)}*/}
-            {/*        page={page}*/}
-            {/*        loading={globalItemsLoading}*/}
-            {/*        onFetchData={handleTableChange}*/}
-            {/*        resizable={false}*/}
-            {/*    />*/}
+            <ReactTable
+                // manual
+                sortable
+                minRows={2}
+                defaultPageSize={10}
+                noDataText={'No data found.'}
+                columns={columns}
+                data={products instanceof Array ? products : []}
+                // pages={Math.ceil(globalItemsPagination.total / globalItemsPagination.pageSize)}
+                // page={page}
+                loading={productsLoading}
+                // onFetchData={handleTableChange}
+                resizable={false}
+            />
             {/*</div>*/}
         </Fragment>
     );

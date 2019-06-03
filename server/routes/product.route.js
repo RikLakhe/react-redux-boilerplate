@@ -6,12 +6,19 @@ const router = express.Router();
 
 router.route('/')
     .get((req, res, next) => {
-        res.status(200)
+        res
+            .status(200)
             .send({
                 code: '200',
                 status: 'SUCCESS',
                 data: AllProducts
             });
     });
+
+router.route('/:id/edit')
+    .put((req, res, next) => {
+        console.log(req.params);
+    })
+
 
 module.exports = router;
