@@ -13,12 +13,12 @@ export class ViewContainer extends Component {
      * @param {string} globalItem
      * @param {object} formData
      */
-    fetchProducts = (formData) => {
-        this.props.actions.fetchProducts(formData);
+    fetchProductsByID = (formData) => {
+        this.props.actions.fetchProductsByID(formData);
     };
 
     render() {
-        return <ListProducts fetchProducts={this.fetchProducts} {...this.props} />;
+        return <ListProducts fetchProductsByID={this.fetchProductsByID} {...this.props} />;
     }s
 }
 

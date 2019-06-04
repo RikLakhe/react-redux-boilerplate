@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Import custom components
-import ListProducts from '../../components/Product/ListProducts';
+import AddProducts from '../../components/Product/AddProducts';
 import * as productService from '../../services/productService';
 
 export class AddContainer extends Component {
@@ -13,12 +13,12 @@ export class AddContainer extends Component {
      * @param {string} globalItem
      * @param {object} formData
      */
-    fetchProducts = (formData) => {
-        this.props.actions.fetchProducts(formData);
+    addProduct = (formData) => {
+        this.props.actions.addProduct(formData);
     };
 
     render() {
-        return <ListProducts fetchProducts={this.fetchProducts} {...this.props} />;
+        return <AddProducts addProduct={this.addProduct} {...this.props} />;
     }s
 }
 

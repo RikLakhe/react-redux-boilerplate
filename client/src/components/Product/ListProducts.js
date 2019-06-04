@@ -1,7 +1,7 @@
 import React, {Fragment, useContext, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import ReactTable from 'react-table';
-// import { Form, Formik, withFormik } from 'formik';
+import { Form, Formik, withFormik } from 'formik';
 import 'react-table/react-table.css';
 
 const ListProducts = props => {
@@ -13,18 +13,17 @@ const ListProducts = props => {
     // const { childOpenKey, selectedChild } = useContext(MenuContext);
     // const { page, setPage } = useState(0);
     // let childMenuCode = explodeChildrenPath(childOpenKey);
-    // const {
-    //     handleSubmit,
-    //     handleChange,
+    const {
+        handleSubmit,
+        handleChange,
     //     setFieldValue,
     //     globalItemsErrors,
     //     globalItemsLoading,
     //     globalItems,
     //     values,
     //     globalItemsPagination,
-    // } = props;
-    // const { t } = useTranslation();
-    //
+    } = props;
+
     const columns = [
         {
             Header: () => 'Product ID',
@@ -119,39 +118,35 @@ const ListProducts = props => {
 
     return (
         <Fragment>
-            {/*<div className="py-4">*/}
-            {/*    <Message error={globalItemsErrors} />*/}
-            {/*    <div className="row mb-3 align-items-center">*/}
-            {/*        <div className="col-md-6">*/}
-            {/*            <h2 className="h4 bold mb-0">{t(`${childMenuCode}.list.title`)}</h2>*/}
-            {/*        </div>*/}
-            {/*        <div className={selectedChild.isEditable ? 'col-md-4' : 'col-md-6'}>*/}
-            {/*            <Formik onSubmit={handleSubmit}>*/}
-            {/*                <Form className="d-flex border rounded">*/}
-            {/*                    <input*/}
-            {/*                        name="searchParameter"*/}
-            {/*                        onChange={handleChange}*/}
-            {/*                        value={values.searchParameter}*/}
-            {/*                        type="text"*/}
-            {/*                        placeholder={t(`${childMenuCode}.list.filter.placeholder`)}*/}
-            {/*                        className="border-0 form-control"*/}
-            {/*                    />*/}
-            {/*                    <button className="btn btn-link btn-inner">*/}
-            {/*                        <i className="icon ion-md-search" />*/}
-            {/*                    </button>*/}
-            {/*                </Form>*/}
-            {/*            </Formik>*/}
-            {/*        </div>*/}
-            {/*        {selectedChild.isEditable ? (*/}
-            {/*            <div className="col-md-2">*/}
-            {/*                <Link to={`/globals/${childMenuCode}/add`} className="btn btn-block btn-outline-success">*/}
-            {/*                    <i className="icon ion-md-add" /> {t('add.button.label')}*/}
-            {/*                </Link>*/}
-            {/*            </div>*/}
-            {/*        ) : null}*/}
-            {/*    </div>*/}
+            <div>
+                {/*<Message error={globalItemsErrors} />*/}
+                <div className="row mb-3 align-items-center">
+                    <div className="col-md-5">
+                        <h2 className="h4 bold mb-0">Product List</h2>
+                    </div>
+                    <div className='col-md-6'>
+                        <Formik onSubmit={handleSubmit}>
+                            <Form className="d-flex border rounded">
+                                <input
+                                    name="searchParameter"
+                                    onChange={handleChange}
+                                    // value={values.searchParameter}
+                                    type="text"
+                                    placeholder="Search Products"
+                                    className="border-0 form-control"
+                                />
+                                <button className="btn btn-link btn-inner">
+                                    <i className="icon ion-md-search" />
+                                </button>
+                            </Form>
+                        </Formik>
+                    </div>
+                        <div className="col-md-1">
+                            <Link to={`products/add`} className="btn btn-block btn-outline-success">ADD</Link>
+                        </div>
+                </div>
             <ReactTable
-                // manual
+                // manual.
                 sortable
                 minRows={2}
                 defaultPageSize={10}
@@ -164,24 +159,22 @@ const ListProducts = props => {
                 // onFetchData={handleTableChange}
                 resizable={false}
             />
-            {/*</div>*/}
+            </div>
         </Fragment>
     );
 };
 
-// export default withFormik({
-//     enableReinitialize: true,
-//     handleSubmit: (values, { props }) => {
-//         props.fetchGlobalWithCriteria(values.masterType, {
-//             masterType: values.masterType,
-//             searchParameter: values.searchParameter,
-//         });
-//     },
-//     mapPropsToValues: props => ({
-//         masterType: 'id-types',
-//         searchParameter: '',
-//     }),
-//     displayName: 'List',
-// })(List);
-
-export default ListProducts;
+export default withFormik({
+    enableReinitialize: true,
+    handleSubmit: (values, { props }) => {
+        console.log(values)
+        // props.fetchGlobalWithCriteria(values.masterType, {
+        //     masterType: values.masterType,
+        //     searchParameter: values.searchParameter,
+        // });
+    },
+    mapPropsToValues: props => ({
+        searchParameter: '',
+    }),
+    displayName: 'ListProducts',
+})(ListProducts);
