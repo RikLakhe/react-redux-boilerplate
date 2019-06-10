@@ -1,34 +1,46 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 // Import custom components
-import ListProducts from '../../components/Product/ListProducts';
+import EditProducts from '../../components/Product/EditProducts';
 import * as productService from '../../services/productService';
 
 export class EditContainer extends Component {
     /**
+     * Fetch product item records with search criteria.
+     *
+     * @param {string} ID
+     */
+    fetchProductsByID = (ID) => {
+        this.props.actions.fetchProductsByID(ID);
+    };
+
+    /**
      * Fetch global item records with search criteria.
      *
-     * @param {string} globalItem
      * @param {object} formData
      */
-    fetchProducts = (formData) => {
-        this.props.actions.fetchProducts(formData);
+    editProduct = (formData) => {
+        this.props.actions.editProduct(formData);
     };
 
     render() {
-        return <ListProducts fetchProducts={this.fetchProducts} {...this.props} />;
-    }s
+        return <EditProducts
+            editProduct={this.editProduct}
+            fetchProductsByID={this.fetchProductsByID}
+            {...this.props}
+        />;
+    }
 }
 
 /**
  * Map the state to props.
  */
 const mapStateToProps = state => ({
-    products: state.products.payload,
-    productsErrors: state.products.errors,
-    productsLoading: state.products.loading,
+    selectedProducts: state.selectedProduct.payload,
+    selectedProductsErrors: state.selectedProduct.errors,
+    selectedProductsLoading: state.selectedProduct.loading,
 });
 
 /**

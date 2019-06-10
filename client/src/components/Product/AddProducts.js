@@ -139,7 +139,7 @@ export default withFormik({
         console.log(values)
         props.addProduct(values);
     },
-    mapPropsToValues: props => ({}),
+    mapPropsToValues: props => ({
     product_name: '',
     company: '',
     price: '',
@@ -149,5 +149,5 @@ export default withFormik({
     expire: '',
     phone: '',
     isActive: '',
-    about: '',
+    about: '',})
 })(AddProducts);

@@ -76,7 +76,7 @@ const ListProducts = props => {
                         Edit
                     </Link>
                     /
-                    <Link to={`/products/${d.product_id}`} className="btn btn-sm btn-link p-0">
+                    <Link className="btn btn-sm btn-link p-0">
                         View
                     </Link>
                     /

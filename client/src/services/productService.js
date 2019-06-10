@@ -1,4 +1,4 @@
-import { push } from 'connected-react-router';
+import {push} from 'connected-react-router';
 import {
     productFetchRequest,
     productFetchRequestFailure,
@@ -7,7 +7,7 @@ import {
     singleProductFetchRequestFailure,
     singleProductFetchRequestSuccess
 } from '../actions/productAction'
-import {fetch, store} from '../utils/httpUtil';
+import {fetch, store, update} from '../utils/httpUtil';
 
 export const fetchProducts = (formData = {}) => {
     return dispatch => {
@@ -45,7 +45,7 @@ export const editProduct = (formData = {}) => {
     return dispatch => {
         dispatch(productFetchRequest());
 
-        return fetch('public/v1/product')
+        return fetch(`public/v1/product/${formData.product_id}`)
             .then(response => {
                 if (response.data.status === 'SUCCESS') {
                     dispatch(productFetchRequestSuccess(response.data.data));
@@ -62,11 +62,11 @@ export const addProduct = (formData = {}) => {
     return dispatch => {
         dispatch(productFetchRequest());
 
-        return store('public/v1/product/add',formData)
+        return store('public/v1/product/add', formData)
             .then(response => {
                 if (response.data.status === 'SUCCESS') {
                     dispatch(productFetchRequestSuccess(response.data.data));
-                    dispatch(push({ pathname: `/products` }));
+                    dispatch(push({pathname: `/products`}));
                 } else {
                     // TODO
                 }

@@ -4,13 +4,14 @@ import {connectRouter} from 'connected-react-router';
 // import httpErrorsReducer from './httpErrorsReducer';
 // import passwordPoliciesReducer from './passwordPoliciesReducer';
 // import countriesReducer from './countriesReducer';
-// import customersReducer from './customersReducer';
+import selectedProductReducer from './selectedProductReducer';
 import productsReducer from './productsReducer';
 
 const appReducer = history =>
     combineReducers({
         router: connectRouter(history),
         products: productsReducer,
+        selectedProduct: selectedProductReducer,
     });
 
 const rootReducer = (state, action) => {

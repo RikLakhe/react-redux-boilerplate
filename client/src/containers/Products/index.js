@@ -5,6 +5,7 @@ import NotFound from '../Exception/NotFoundContainer';
 // Import custom components
 import ProductsList from './ProductsList'
 import ProductsAdd from './ProductsAdd'
+import ProductsEdit from './ProductsEdit'
 
 const Products = ({ match }) => (
     <Fragment>
@@ -12,7 +13,7 @@ const Products = ({ match }) => (
             <Route exact path={`${match.url}`} component={ProductsList} />
             <Route exact path={`${match.url}/add`} component={ProductsAdd} />
             <Route exact path={`${match.url}/:id`} component={ProductsList} />
-            <Route exact path={`${match.url}/:id/edit`} component={ProductsList} />
+            <Route exact path={`${match.url}/:id/edit`} component={ProductsEdit} />
             <Route component={NotFound} />
         </Switch>
     </Fragment>

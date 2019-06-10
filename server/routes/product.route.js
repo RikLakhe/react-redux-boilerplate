@@ -4,7 +4,7 @@ import uuid from 'uuid';
 import {AllProducts} from './../_mock_/Products.mockData';
 
 const router = express.Router();
-const data = AllProducts;
+let data = AllProducts;
 
 router.route('/')
     .get((req, res, next) => {
@@ -28,8 +28,20 @@ router.route('/:id')
                 data: foundData
             });
     })
+    .put((req, res, next) => {
+        console.log('update',req.body)
+        const foundData = data.find(x => x.product_id === req.params.id);
+        var index = data.indexOf(foundData);
+        // data[index] = res;
+        res
+            .status(200)
+            .send({
+                code: '200',
+                status: 'SUCCESS',
+            });
+    })
     .delete((req,res,next)=>{
-
+            let testdata = data.filter(data => data.product_id !== req.params.id);
     })
 
 
