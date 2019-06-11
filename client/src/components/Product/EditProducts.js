@@ -154,8 +154,7 @@ const EditProducts = props => {
 export default withFormik({
     enableReinitialize: true,
     handleSubmit: (values, {props}) => {
-        console.log(values)
-        // props.addProduct(values);
+        props.editProduct(values);
     },
     mapPropsToValues: props => ({
         product_id: props.selectedProducts.product_id,

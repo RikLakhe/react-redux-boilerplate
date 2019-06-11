@@ -29,10 +29,9 @@ router.route('/:id')
             });
     })
     .put((req, res, next) => {
-        console.log('update',req.body)
         const foundData = data.find(x => x.product_id === req.params.id);
         var index = data.indexOf(foundData);
-        // data[index] = res;
+        data[index] = req.body;
         res
             .status(200)
             .send({
@@ -41,7 +40,15 @@ router.route('/:id')
             });
     })
     .delete((req,res,next)=>{
-            let testdata = data.filter(data => data.product_id !== req.params.id);
+        const foundData = data.find(x => x.product_id === req.params.id);
+        var index = data.indexOf(foundData);
+        data = data.splice(index,1);
+        res
+            .status(200)
+            .send({
+                code: '200',
+                status: 'SUCCESS',
+            });
     })
 
 

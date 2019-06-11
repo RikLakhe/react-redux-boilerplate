@@ -16,6 +16,7 @@ const ListProducts = props => {
     const {
         handleSubmit,
         handleChange,
+        deleteProduct,
     //     setFieldValue,
     //     globalItemsErrors,
     //     globalItemsLoading,
@@ -80,7 +81,7 @@ const ListProducts = props => {
                         View
                     </Link>
                     /
-                    <Link to={`/products/`} className="btn btn-sm btn-link p-0">
+                    <Link onClick={()=>deleteProduct(d.product_id)} className="btn btn-sm btn-link p-0">
                         Delete
                     </Link>
                 </div>

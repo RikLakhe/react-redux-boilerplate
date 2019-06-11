@@ -7,7 +7,7 @@ import {
     singleProductFetchRequestFailure,
     singleProductFetchRequestSuccess
 } from '../actions/productAction'
-import {fetch, store, update} from '../utils/httpUtil';
+import {fetch, store, update, destroy} from '../utils/httpUtil';
 
 export const fetchProducts = (formData = {}) => {
     return dispatch => {
@@ -41,15 +41,15 @@ export const fetchProductsByID = (ID) => {
     };
 };
 
-export const editProduct = (formData = {}) => {
+export const addProduct = (formData = {}) => {
     return dispatch => {
         dispatch(productFetchRequest());
 
-        return fetch(`public/v1/product/${formData.product_id}`)
+        return store('public/v1/product/add', formData)
             .then(response => {
                 if (response.data.status === 'SUCCESS') {
                     dispatch(productFetchRequestSuccess(response.data.data));
-
+                    dispatch(push({pathname: `/products`}));
                 } else {
                     // TODO
                 }
@@ -58,11 +58,28 @@ export const editProduct = (formData = {}) => {
     };
 };
 
-export const addProduct = (formData = {}) => {
+export const editProduct = (formData = {}) => {
     return dispatch => {
         dispatch(productFetchRequest());
 
-        return store('public/v1/product/add', formData)
+        return update(`public/v1/product/${formData.product_id}`, formData)
+            .then(response => {
+                if (response.data.status === 'SUCCESS') {
+                    dispatch(productFetchRequestSuccess(response.data.data));
+                    dispatch(push({pathname: `/products`}));
+                } else {
+                    // TODO
+                }
+            })
+            .catch(error => dispatch(productFetchRequestFailure(error.response.data)));
+    };
+};
+
+export const deleteProduct = (id) => {
+    return dispatch => {
+        dispatch(productFetchRequest());
+
+        return destroy(`public/v1/product/${id}`)
             .then(response => {
                 if (response.data.status === 'SUCCESS') {
                     dispatch(productFetchRequestSuccess(response.data.data));

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 // Import custom components
 import ListProducts from '../../components/Product/ListProducts';
@@ -10,16 +10,25 @@ export class ListContainer extends Component {
     /**
      * Fetch global item records with search criteria.
      *
-     * @param {string} globalItem
+     *
      * @param {object} formData
      */
     fetchProducts = (formData) => {
         this.props.actions.fetchProducts(formData);
     };
 
+    /**
+     * delete product item
+     *
+     *@param {string} Id
+     */
+    deleteProduct = (Id) => {
+        this.props.actions.deleteProduct(Id);
+    };
+
     render() {
-        return <ListProducts fetchProducts={this.fetchProducts} {...this.props} />;
-    }s
+        return <ListProducts fetchProducts={this.fetchProducts} deleteProduct={this.deleteProduct} {...this.props} />;
+    }
 }
 
 /**
