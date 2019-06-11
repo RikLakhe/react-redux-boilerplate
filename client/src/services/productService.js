@@ -79,10 +79,10 @@ export const deleteProduct = (id) => {
     return dispatch => {
         dispatch(productFetchRequest());
 
-        return destroy(`public/v1/product/${id}`)
+        return destroy(`public/v1/product/`,id)
             .then(response => {
                 if (response.data.status === 'SUCCESS') {
-                    dispatch(productFetchRequestSuccess(response.data.data));
+                    // dispatch(productFetchRequestSuccess(response.data.data));
                     dispatch(push({pathname: `/products`}));
                 } else {
                     // TODO

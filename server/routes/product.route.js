@@ -42,7 +42,7 @@ router.route('/:id')
     .delete((req,res,next)=>{
         const foundData = data.find(x => x.product_id === req.params.id);
         var index = data.indexOf(foundData);
-        data = data.splice(index,1);
+        data = data.splice(index);
         res
             .status(200)
             .send({

@@ -17,6 +17,7 @@ const ListProducts = props => {
         handleSubmit,
         handleChange,
         deleteProduct,
+        fetchProducts,
     //     setFieldValue,
     //     globalItemsErrors,
     //     globalItemsLoading,
@@ -81,7 +82,10 @@ const ListProducts = props => {
                         View
                     </Link>
                     /
-                    <Link onClick={()=>deleteProduct(d.product_id)} className="btn btn-sm btn-link p-0">
+                    <Link onClick={()=>{
+                        deleteProduct(d.product_id)
+                        fetchProducts();
+                    }} className="btn btn-sm btn-link p-0">
                         Delete
                     </Link>
                 </div>
@@ -114,7 +118,7 @@ const ListProducts = props => {
     // }, [childMenuCode, selectedChild]);
 
     useEffect(() => {
-        props.fetchProducts();
+        fetchProducts();
     }, [])
 
     return (
