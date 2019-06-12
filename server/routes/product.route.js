@@ -39,10 +39,8 @@ router.route('/:id')
                 status: 'SUCCESS',
             });
     })
-    .delete((req,res,next)=>{
-        const foundData = data.find(x => x.product_id === req.params.id);
-        var index = data.indexOf(foundData);
-        data = data.splice(index);
+    .delete((req, res, next) => {
+        data = data.filter(x => x.product_id !== req.params.id);
         res
             .status(200)
             .send({
