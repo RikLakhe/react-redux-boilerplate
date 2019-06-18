@@ -1,6 +1,7 @@
 import express from 'express';
 import uuid from 'uuid';
 
+import connection from '../config/dbConfig'
 import {AllProducts} from './../_mock_/Products.mockData';
 
 const router = express.Router();
@@ -8,6 +9,13 @@ let data = AllProducts;
 
 router.route('/')
     .get((req, res, next) => {
+        const sql = 'SELECT * FROM product';
+        connection.query(sql,(err,res)=>{
+            if (err) {
+                console.error('error connecting: ' + err);
+            }
+            console.log("result",res)
+        })
         res
             .status(200)
             .send({
@@ -53,7 +61,14 @@ router.route('/:id')
 router.route('/add')
     .post((req, res, next) => {
         req.body.product_id = uuid();
-        data.push(req.body);
+        const data = (req.body);
+        const sql = `INSERT INTO product VALUES set ?`
+        connection.query(sql,data,(err,res)=>{
+            if (err) {
+                console.error('error connecting: ' + err);
+            }
+            console.log("result",res)
+        })
         res
             .status(200)
             .send({
@@ -63,6 +78,7 @@ router.route('/add')
                     message: 'Product successfully added!'
                 },
             });
+
     })
 
 
