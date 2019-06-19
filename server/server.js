@@ -2,6 +2,7 @@ import http from 'http';
 import express from 'express';
 import logger from 'morgan';
 import cors from'cors';
+import bodyParser from'body-parser';
 import cookieParser from 'cookie-parser';
 // Parse HTTP request cookies
 // HTTP request logger middleware
@@ -17,9 +18,13 @@ const server = http.createServer(app);
 
 app.use(logger('dev'));
 // parses incoming requests with JSON payloads
-app.use(express.json());
+// app.use(express.json());
 // parses incoming requests with urlencoded payloads and is based on body-parser
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cors());
 app.use(cookieParser());
 app.disable('etag');

@@ -62,13 +62,15 @@ router.route('/add')
     .post((req, res, next) => {
         req.body.product_id = uuid();
         const data = (req.body);
-        const sql = `INSERT INTO product VALUES set ?`
-        connection.query(sql,data,(err,res)=>{
+        const sql = "INSERT INTO product SET ?"
+
+        console.log(connection.query(sql,data,(err,res)=>{
             if (err) {
                 console.error('error connecting: ' + err);
             }
             console.log("result",res)
-        })
+        }))
+
         res
             .status(200)
             .send({

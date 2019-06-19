@@ -40,7 +40,7 @@ const AddProducts = props => {
                                 <tr>
                                     <td className="col-md-2">Product Company</td>
                                     <td className="col-md-10">
-                                        <input name="company"
+                                        <input name="product_company"
                                                onChange={handleChange}
                                                style={{width: "100%"}}/>
                                     </td>
@@ -48,7 +48,7 @@ const AddProducts = props => {
                                 <tr>
                                     <td className="col-md-2">Product Price</td>
                                     <td className="col-md-10">
-                                        <input name="price"
+                                        <input name="product_price"
                                                onChange={handleChange}
                                                style={{width: "100%"}}/>
                                     </td>
@@ -56,7 +56,7 @@ const AddProducts = props => {
                                 <tr>
                                     <td className="col-md-2">Company Email</td>
                                     <td className="col-md-10">
-                                        <input name="email"
+                                        <input name="product_email"
                                                onChange={handleChange}
                                                style={{width: "100%"}}/>
                                     </td>
@@ -64,7 +64,7 @@ const AddProducts = props => {
                                 <tr>
                                     <td className="col-md-2">Company Phone</td>
                                     <td className="col-md-10">
-                                        <input name="phone"
+                                        <input name="product_phone"
                                                onChange={handleChange}
                                                style={{width: "100%"}}/>
                                     </td>
@@ -73,31 +73,31 @@ const AddProducts = props => {
                                     <td className="col-md-2">Company Address</td>
                                     <td className="col-md-10">
                                         <input
-                                            name="address"
+                                            name="product_address"
                                             onChange={handleChange}
                                             style={{width: "100%"}}/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td className="col-md-2">Company Registered</td>
-                                    <td className="col-md-4">
-                                        Approved :<input name="approved"
-                                                         onChange={handleChange}
-                                                         type="date"
-                                                         style={{
-                                                             width: "25%",
-                                                             marginRight: '50px',
-                                                             paddingLeft: '50px'
-                                                         }}/>
-                                        Expired :<input name="expire"
-                                                        onChange={handleChange}
-                                                        type="date"
-                                                        style={{
-                                                            width: "25%",
-                                                            paddingLeft: '50px'
-                                                        }}/>
-                                    </td>
-                                </tr>
+                                {/*<tr>*/}
+                                {/*    <td className="col-md-2">Company Registered</td>*/}
+                                {/*    <td className="col-md-4">*/}
+                                {/*        Approved :<input name="approved"*/}
+                                {/*                         onChange={handleChange}*/}
+                                {/*                         type="date"*/}
+                                {/*                         style={{*/}
+                                {/*                             width: "25%",*/}
+                                {/*                             marginRight: '50px',*/}
+                                {/*                             paddingLeft: '50px'*/}
+                                {/*                         }}/>*/}
+                                {/*        Expired :<input name="expire"*/}
+                                {/*                        onChange={handleChange}*/}
+                                {/*                        type="date"*/}
+                                {/*                        style={{*/}
+                                {/*                            width: "25%",*/}
+                                {/*                            paddingLeft: '50px'*/}
+                                {/*                        }}/>*/}
+                                {/*    </td>*/}
+                                {/*</tr>*/}
                                 <tr>
                                     <td className="col-md-2">Product Status</td>
                                     <td className="col-md-10">
@@ -140,14 +140,15 @@ export default withFormik({
         props.addProduct(values);
     },
     mapPropsToValues: props => ({
-    product_name: '',
-    company: '',
-    price: '',
-    email: '',
-    address: '',
-    approved: '',
-    expire: '',
-    phone: '',
-    isActive: '',
-    about: '',})
+        product_name: '',
+        product_company: '',
+        product_price: '',
+        product_email: '',
+        product_address: '',
+        // product_approved: '',
+        // product_expire: '',
+        product_phone: '',
+        product_isActive: '',
+        product_about: '',
+    })
 })(AddProducts);
