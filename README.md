@@ -1,4 +1,8 @@
 # react-redux-boilerplate
 Boiler plate for react redux application with express to serve api
 
-https://github.com/bradtraversy/react_redux_express_starter
+folder 1 : client ---> contains front-end react
+folder 2 : server ---> contains back-end node server
+
+Run both together: 
+# npm run dev
