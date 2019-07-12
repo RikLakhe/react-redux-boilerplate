@@ -5,8 +5,8 @@ import * as Yup from 'yup';
 
 let id = 1;
 
-const Home = () => {
-    const {values, touched, errors, handleSubmit, handleChange, currenciesErrors} = props;
+const Home = props => {
+    const {values, touched, errors, handleChange} = props;
 
     const [key, setKey] = useState([]);
     const [toDoItem, setToDoItem] = useState([]);
@@ -24,8 +24,25 @@ const Home = () => {
     return (
         <Fragment>
             <h1>ToDo</h1>
-            <div>
-                <Formik onSubmit={handleSubmit}>
+            <Formik
+                onSubmit={addItem}
+                validationSchema={Yup.object().shape({
+                    toDo: Yup.string()
+                        .required('Item is required!'),
+                })}
+                initialValues={{
+                    toDo: '',
+                }}
+            >
+                {({
+                      handleSubmit,
+                      handleChange,
+                      handleBlur,
+                      values,
+                      touched,
+                      isValid,
+                      errors,
+                  }) => (
                     <Form className="add-form">
                         <label className="form-group row align-items-center">
                             <div className="col-sm-8">
@@ -39,12 +56,12 @@ const Home = () => {
                                 {errors.toDo && touched.toDo ? (
                                     <span className="small text-danger bold">{errors.toDo}</span>
                                 ) : null}
-                                <button type="submit" className="btn btn-lg btn-primary" >Add</button>
+                                <button type="submit" className="btn btn-lg btn-primary">Add</button>
                             </div>
                         </label>
                     </Form>
-                </Formik>
-            </div>
+                )}
+            </Formik>
             <ul>
                 {key.map((keyItem, keyIndex) => {
                     return (<li>{keyItem}{' '}<Button size="sm" variant="danger" onClick={() => {
@@ -54,20 +71,6 @@ const Home = () => {
             </ul>
         </Fragment>
     );
-}
+};
 
-export default withFormik({
-    enableReinitialize: true,
-    validationSchema: Yup.object().shape({
-        toDo: Yup.string()
-            .required('Item is required!'),
-    }),
-    mapPropsToValues: props => ({
-        toDo: '',
-    }),
-    handleSubmit: (values, {props}) => {
-
-    },
-    displayName: 'todoForm',
-})(Home);
-;
+export default Home;
