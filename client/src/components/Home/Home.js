@@ -34,6 +34,7 @@ const Home = props => {
                 })}
                 initialValues={{
                     toDo: '',
+                    status:'',
                 }}
             >
                 {({
@@ -49,18 +50,6 @@ const Home = props => {
                         <label className="form-group row align-items-center">
                             <div className="col-sm-12">
                                 <InputGroup className="mb-3">
-                                    <DropdownButton
-                                        as={InputGroup.Prepend}
-                                        variant="outline-secondary"
-                                        title="Dropdown"
-                                        id="input-group-dropdown-1"
-                                    >
-                                        <Dropdown.Item href="#">Action</Dropdown.Item>
-                                        <Dropdown.Item href="#">Another action</Dropdown.Item>
-                                        <Dropdown.Item href="#">Something else here</Dropdown.Item>
-                                        <Dropdown.Divider />
-                                        <Dropdown.Item href="#">Separated link</Dropdown.Item>
-                                    </DropdownButton>
                                     <Field
                                         name="toDo"
                                         type="text"
@@ -83,7 +72,7 @@ const Home = props => {
                 <ListGroup>
                     {key && key.map((keyItem, keyIndex) => {
                         return (
-                            <ListGroup.Item variant="primary" key={keyIndex}>{keyItem.item}{' '}<Button size="sm" variant="danger" onClick={() => {
+                            <ListGroup.Item draggable={true} variant="primary" key={keyIndex}>{keyItem.item}{' '}<Button size="sm" variant="danger" onClick={() => {
                                 removeItem(keyItem);
                             }}>Remove</Button></ListGroup.Item>)
                     })}

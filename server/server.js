@@ -1,8 +1,8 @@
 import http from 'http';
 import express from 'express';
 import logger from 'morgan';
-import cors from'cors';
-import bodyParser from'body-parser';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 // Parse HTTP request cookies
 // HTTP request logger middleware
@@ -13,7 +13,7 @@ import privateRoutes from './routes/index.privateRoute';
 import publicRoute from './routes/index.publicRoute';
 
 const app = express()
-    // / setup express application
+// / setup express application
 const server = http.createServer(app);
 
 app.use(logger('dev'));
@@ -23,7 +23,7 @@ app.use(logger('dev'));
 // app.use(express.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(cors());
 app.use(cookieParser());
@@ -36,4 +36,6 @@ app.use('/public', publicRoute);
 const hostname = '127.127.127.127';
 const port = 3001;
 
-server.listen(port, hostname, () => { console.log(`Server running at http://${hostname}:${port}/`); });
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});

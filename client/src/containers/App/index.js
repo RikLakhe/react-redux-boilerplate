@@ -15,7 +15,6 @@ const App = () => (
         <Switch>
 
             <PublicRoute exact path='/' layout={StaticLayout} component={AsyncLogin} />
-
             <PrivateRoute  path='/home' layout={MainLayout} component={AsyncHome}/>
             <PrivateRoute  path='/products' layout={MainLayout} component={AsyncProducts}/>
             <PrivateRoute  path='/settings' layout={MainLayout} component={AsyncSetting}/>

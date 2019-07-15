@@ -9,7 +9,7 @@ const AppSideNav = () => {
                 {MenuList &&
                 MenuList.map((item, index) => (
                     <li className="nav-item">
-                        <Link to={item.path}><i className={"icon ion-md-open mx-2"} />{item.name}</Link>
+                        <Link to={item.path}><i className={"fas fa-band-aid"} />{item.name}</Link>
                     </li>
                 ))}
             </ul>
