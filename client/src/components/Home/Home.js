@@ -72,7 +72,7 @@ const Home = props => {
                 <ListGroup>
                     {key && key.map((keyItem, keyIndex) => {
                         return (
-                            <ListGroup.Item draggable={true} variant="primary" key={keyIndex}>{keyItem.item}{' '}<Button size="sm" variant="danger" onClick={() => {
+                            <ListGroup.Item variant="primary" key={keyIndex}>{keyItem.item}{' '}<Button size="sm" variant="danger" onClick={() => {
                                 removeItem(keyItem);
                             }}>Remove</Button></ListGroup.Item>)
                     })}

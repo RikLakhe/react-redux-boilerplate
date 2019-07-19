@@ -1,3 +1,4 @@
-import Home from './Home';
+import useDragable from './Dragable';
+// import Home from './Home';
 
-export default Home;
+export default useDragable;
