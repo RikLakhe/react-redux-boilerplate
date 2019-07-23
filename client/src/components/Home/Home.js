@@ -1,28 +1,66 @@
 import React, {Fragment, useState} from 'react';
-import {Button, InputGroup, ListGroup,DropdownButton,Dropdown} from 'react-bootstrap';
-import {Field, Form, Formik, withFormik} from 'formik';
+import {InputGroup} from 'react-bootstrap';
+import {Field, Form, Formik} from 'formik';
 import * as Yup from 'yup';
 
-let id = 1;
+import Draggable from './Draggable'
+
+let id = 0;
 
 const Home = props => {
-    const [key, setKey] = useState([]);
-    const [toDoItem, setToDoItem] = useState([]);
+
+    const [key, setKey] = useState({});
+    const [columns, setColumns] = useState({
+        'column-1': {
+            id: 'column-1', title: 'To Do', taskIds: [],
+        },
+        'column-2': {
+            id: 'column-2', title: 'In Progress', taskIds: [],
+        },
+        'column-3': {
+            id: 'column-3', title: 'Ready', taskIds: [],
+        },
+        'column-4': {
+            id: 'column-4', title: 'Done', taskIds: [],
+        }
+    });
+    const [columnOrder, setColumnOrder] = useState(['column-1', 'column-2', 'column-3', 'column-4']);
+
     const addItem = props => {
-        const nextKeys = key.concat({code: id++, item: props.toDo});
+        let newKey = `task-${id++}`;
+        const nextKeys = {
+            ...key,
+            [newKey]: {id: newKey, content: props.toDo}
+        }
         setKey(nextKeys);
+
+        const start = columns['column-1'];
+        const newColumn = {
+            ...start,
+            taskIds: [
+                ...start.taskIds,
+                newKey
+            ] ,
+        };
+        const newState = {
+            columns: {
+                ...columns,
+                [newColumn.id]: newColumn,
+            },
+        };
+
+        setColumns(newState.columns);
         props.toDo = ' '
-    }
+    };
 
     const removeItem = (keyItem) => {
         let tempArray = key.filter(key => key !== keyItem);
         setKey(tempArray);
-    }
+    };
 
-    console.log('key', key);
     return (
         <Fragment>
-            <h1>ToDo</h1>
+            <h1>Dynamic Dashboard</h1>
             <Formik
                 onSubmit={(values, actions) => {
                     addItem(values);
@@ -34,16 +72,12 @@ const Home = props => {
                 })}
                 initialValues={{
                     toDo: '',
-                    status:'',
+                    status: '',
                 }}
             >
                 {({
-                      handleSubmit,
                       handleChange,
-                      handleBlur,
-                      values,
                       touched,
-                      isValid,
                       errors,
                   }) => (
                     <Form className="add-form">
@@ -69,14 +103,7 @@ const Home = props => {
                     </Form>
                 )}
             </Formik>
-                <ListGroup>
-                    {key && key.map((keyItem, keyIndex) => {
-                        return (
-                            <ListGroup.Item variant="primary" key={keyIndex}>{keyItem.item}{' '}<Button size="sm" variant="danger" onClick={() => {
-                                removeItem(keyItem);
-                            }}>Remove</Button></ListGroup.Item>)
-                    })}
-                </ListGroup>
+            <Draggable tasks={key} columns={columns} setColumns={setColumns} columnOrder={columnOrder}/>
         </Fragment>
     );
 };

@@ -2,26 +2,16 @@ import React, {useState} from 'react';
 import styled from 'styled-components'
 import {DragDropContext} from "react-beautiful-dnd";
 
-import initialData from './initialData'
 import Column from './Column'
 
 const Container = styled.div`
 display:flex;
 `;
 
-const useDragable = props => {
-    const [columns, setColumns] = useState(initialData.columns)
-    const [columnOrder, setColumnOrder] = useState(initialData.columnOrder)
-    const [tasks, setTasks] = useState(initialData.tasks)
+const Draggable = props => {
+    const {columns, setColumns, tasks, columnOrder} = props;
 
-    const reorder = (list, startIndex, endIndex) => {
-        const result = Array.from(list);
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-
-        return result;
-    };
-
+    console.log('darg',columns,tasks)
     const onDragEnd = (result) => {
         const {destination, source, draggableId} = result;
 
@@ -109,4 +99,4 @@ const useDragable = props => {
     )
 };
 
-export default useDragable;
+export default Draggable;

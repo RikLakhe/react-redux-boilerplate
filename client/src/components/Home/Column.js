@@ -6,8 +6,6 @@ import Task from './Task'
 
 const Container = styled.div`
 margin: 8px;
-border : 1px solid lightgrey;
-border-radius:2px;
 width: 25%;
 height: 100%;
 display: flex;
@@ -22,7 +20,8 @@ const Title = styled.h3`
 const TaskList = styled.div`
 margin: 5px ;
 height: 100%;
-border: 2px solid lightgreen;
+border:${props => (props.isDraggingOver ? "4px solid lightgreen" : "1px solid lightgrey")}; 
+border-radius : 20px;
 padding:8px;
 background-color: ${props => (props.isDraggingOver ? "skyblue" : "white")};
 `;
