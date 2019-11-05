@@ -1,0 +1,7 @@
+#sidenav .ul-sidenav{
+    padding-left: 10px;
+}
+
+#sidenav .ul-sidenav li{
+    margin: 5px;
+}
