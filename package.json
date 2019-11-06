@@ -9,8 +9,10 @@
     "server-install": "cd server && npm install",
     "install-both": "concurrently \"npm run client-install\" \"npm run server-install\"",
     "server": "npm start --prefix server",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "client-boot": "npm start --prefix client",
+    "client-ant": "npm start --prefix ant-client",
+    "dev-boot": "concurrently \"npm run server\" \"npm run client-boot\"",
+    "dev-ant": "concurrently \"npm run server\" \"npm run client-ant\""
   },
   "repository": {
     "type": "git",

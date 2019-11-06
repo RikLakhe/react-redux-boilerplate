@@ -2,10 +2,21 @@ import React, {Fragment, useState} from 'react';
 import {InputGroup} from 'react-bootstrap';
 import {Field, Form, Formik} from 'formik';
 import * as Yup from 'yup';
+import styled from 'styled-components'
 
 import Draggable from './Draggable'
 
 let id = 0;
+
+const TitleHeader = styled.h2`
+    color:blue;
+    font-size:50px;
+`;
+
+const Container = styled.div`
+    background-color:#e3e3e8;
+    min-height: 70vh;
+`;
 
 const Home = props => {
 
@@ -40,7 +51,7 @@ const Home = props => {
             taskIds: [
                 ...start.taskIds,
                 newKey
-            ] ,
+            ],
         };
         const newState = {
             columns: {
@@ -59,8 +70,8 @@ const Home = props => {
     };
 
     return (
-        <Fragment>
-            <h1>Dynamic Dashboard</h1>
+        <Container>
+            <TitleHeader>Dynamic Dashboard</TitleHeader>
             <Formik
                 onSubmit={(values, actions) => {
                     addItem(values);
@@ -104,7 +115,7 @@ const Home = props => {
                 )}
             </Formik>
             <Draggable tasks={key} columns={columns} setColumns={setColumns} columnOrder={columnOrder}/>
-        </Fragment>
+        </Container>
     );
 };
 
