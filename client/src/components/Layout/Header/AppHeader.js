@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import '../../../styles/Login.css'
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
 
 import Logo from '../../Common/Logo'
@@ -9,7 +10,7 @@ const AppHeader = (props) => {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Nav className="mr-auto">
+            <Nav className="brand">
                 <Logo/>
                 <Navbar.Brand href="#home">React-Redux-boilerplate</Navbar.Brand>
             </Nav>
